@@ -2,25 +2,25 @@ package caculadora;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 import java.awt.Font;
 
 public class Main {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Janela Teste");
-        frame.setSize(400, 300);
+    public static void main(String[] args){
+
+        JFrame frame = new JFrame("Calculadora teste");
+        frame.setSize(250, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        
-        JLabel label = new JLabel("Calculadora");
-        
-        frame.add(label);
-        frame.setLayout(new FlowLayout(FlowLayout.CENTER));
-        //label.setHorizontalAlignment(JLabel.CENTER);   COLOCA  TEXTO NO MEIO DA TELA
-        Font fonteM = new Font(label.getFont().getName(), Font.PLAIN, 30);
-        label.setFont(fonteM);
-        
 
+        JLabel label = new JLabel("CALCULADORA");
+        frame.add(label);
+
+        label.setHorizontalAlignment(0);
+        label.setVerticalAlignment(SwingConstants.TOP);
+
+        Font fonte = new Font("Comic Sans MS", Font.ITALIC | Font.BOLD, 29);
+        label.setFont(fonte);
     }
 }
