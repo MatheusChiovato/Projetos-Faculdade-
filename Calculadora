@@ -2,25 +2,67 @@ package caculadora;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.Box;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 
 public class Main {
-    public static void main(String[] args){
-
-        JFrame frame = new JFrame("Calculadora teste");
-        frame.setSize(250, 300);
-        frame.setVisible(true);
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Janela Teste");
+        frame.setSize(250, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setLayout(new FlowLayout());
+        
+        Font fonteM = new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 30);
+        Font fontem = new Font("Arial", Font.BOLD, 15);
+        
+        JLabel titulo = new JLabel("Calculadora");
+        titulo.setHorizontalAlignment(0);
+        titulo.setVerticalAlignment(SwingConstants.TOP);
+        titulo.setFont(fonteM);
+        
+        JLabel txtent = new JLabel("Insira um valor");
+        txtent.setFont(fontem);
+        JTextField caixa = new JTextField(5);
+        
+                
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.add(txtent);
+                panel.add(caixa);
+                
+        JLabel txtent2 = new JLabel("Insira outro valor");
+        txtent2.setFont(fontem);
+        JTextField caixa2 = new JTextField(4);        
 
-        JLabel label = new JLabel("CALCULADORA");
-        frame.add(label);
+                JPanel panel2 = new JPanel();
+                panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+                panel2.add(txtent2);
+                panel2.add(caixa2);
 
-        label.setHorizontalAlignment(0);
-        label.setVerticalAlignment(SwingConstants.TOP);
+        JButton botao = new JButton("SOMAR");
+        botao.setFont(fontem);
+        botao.setPreferredSize(new Dimension(90, 25));
 
-        Font fonte = new Font("Comic Sans MS", Font.ITALIC | Font.BOLD, 29);
-        label.setFont(fonte);
+        frame.add(titulo);
+        frame.add(Box.createVerticalStrut(70));
+        frame.add(panel);
+        frame.add(Box.createVerticalStrut(0));
+        frame.add(panel2);
+        frame.add(Box.createVerticalStrut(70));
+        frame.add(botao);
+        
+        frame.setVisible(true);
     }
 }
