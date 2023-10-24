@@ -1,0 +1,12 @@
+public class Menu {
+    public static void main(String[] args) throws Exception {
+        System.out.println("====MENU BIBLIOTECA====");
+        System.out.println("Digite sua opçao: ");
+        System.out.println(" ");
+        System.out.println("1-Funcionário");
+        System.out.println("2-Usuário");
+        System.out.println(" ");
+        System.out.println("=======================");
+        
+    }
+}
