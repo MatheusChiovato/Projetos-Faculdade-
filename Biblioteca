@@ -1,5 +1,18 @@
+import java.util.Scanner;
+
 public class Menu {
     public static void main(String[] args) throws Exception {
+        exibirTelaInicial();
+    }
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    public static void exibirTelaInicial(){
+        Scanner sc = new Scanner(System.in);
+        boolean escolhavalida= false;
+        
+        while(!escolhavalida){
         System.out.println("====MENU BIBLIOTECA====");
         System.out.println("Digite sua opçao: ");
         System.out.println(" ");
@@ -8,5 +21,83 @@ public class Menu {
         System.out.println(" ");
         System.out.println("=======================");
         
+        int escolha = sc.nextInt();
+
+        switch (escolha){
+            case 1:
+                //funçao pra tela de funcionario
+                clearScreen();
+                exibirTelaFuncionario();
+                escolhavalida=true;
+                break;
+
+            case 2:
+                //função pra tela de usuário
+                clearScreen();
+                exibirTelaUsuario();
+                escolhavalida=true;
+                break;
+
+            default:
+                clearScreen();
+                System.out.println("Opção inválida!");
+                System.out.println(" ");
+                System.out.println("=======================");
+                System.out.println(" ");
+                break;
+            } 
+        }
+        sc.close();
     }
+
+        // Método para a tela do funcionário
+        public static void exibirTelaFuncionario(){
+            clearScreen();
+            System.out.println("Tela funcionário");
+            System.out.println("---MANUTENÇÃO---");
+
+        }
+        
+        // Método para a tela do usuário
+        public static void exibirTelaUsuario(){
+            
+           System.out.println("======================="); 
+           System.out.println("      Bem Vindo        "); 
+           System.out.println("  "); 
+           System.out.println("1-Login"); 
+           System.out.println("2-Cadastro"); 
+           System.out.println("3-Voltar à tela inicial"); 
+           System.out.println(" ");
+           System.out.println("=======================");
+
+           Scanner login = new Scanner(System.in);
+           int escusu = login.nextInt();
+
+           switch (escusu){
+            case 1:
+                // Função para tela login
+                clearScreen();
+                
+                break;
+            case 2:
+                // Função para tela cadastro
+                clearScreen();
+
+                break;
+            case 3:
+                // Função para tela inicial
+                clearScreen();
+                exibirTelaInicial();
+
+                break;
+           
+            default:
+            
+                break;
+            
+            }
+            login.close();
+                  
+        }    
+    
 }
