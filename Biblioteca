@@ -19,9 +19,9 @@ public class Menu {
         System.out.println("1-Funcionário");
         System.out.println("2-Usuário");
         System.out.println(" ");
+        int escolha = sc.nextInt();
         System.out.println("=======================");
         
-        int escolha = sc.nextInt();
 
         switch (escolha){
             case 1:
@@ -77,11 +77,13 @@ public class Menu {
             case 1:
                 // Função para tela login
                 clearScreen();
+                telaLogin();
                 
                 break;
             case 2:
                 // Função para tela cadastro
                 clearScreen();
+                telaCadastro();
 
                 break;
             case 3:
@@ -99,5 +101,33 @@ public class Menu {
             login.close();
                   
         }    
+            //Tela de login
+        public static void telaLogin(){
+            Scanner lg = new Scanner(System.in);
+           System.out.println("======================="); 
+           System.out.println("      LOGIN        "); 
+           System.out.println("  ");
+           System.out.println("Digite seu CPF");
+           int cpf=lg.nextInt();
+           System.out.println("Digite sua senha");
+           int senha=lg.nextInt();
+
+        lg.close();
+        }
+
+        public static void telaCadastro() {
+            Scanner cd = new Scanner(System.in);
+           System.out.println("======================="); 
+           System.out.println("      LOGIN        "); 
+           System.out.println("  ");
+           System.out.print("Digite seu nome: ");
+           String nomeO = cd.nextLine();
+           System.out.print("Digite seu CPF: ");
+           String cpfO = cd.nextLine();
+           System.out.print("Digite sua senha: ");
+           String senhaO = cd.nextLine();
+         
+        cd.close();
+        }
     
 }
