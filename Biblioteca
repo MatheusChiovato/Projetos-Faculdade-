@@ -3,15 +3,24 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) throws Exception {
         exibirTelaInicial();
-    }
+
+    }    
+        // array pra organizar os usuários cadastrados
+        private static Usuario[] usuarios ={
+            new Usuario("a", 1), //usuário resumido pra teste
+            new Usuario("Pedro", 1234),
+            new Usuario("Lucas", 4321)
+        };
+        // metodo criado pra limpar a tela do terminal
     public static void clearScreen(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+        // metodo para a tela inicial do programa
     public static void exibirTelaInicial(){
         Scanner sc = new Scanner(System.in);
         boolean escolhavalida= false;
-        
+            // interface "gráfica" pra seleção de opções no terminal
         while(!escolhavalida){
         System.out.println("====MENU BIBLIOTECA====");
         System.out.println("Digite sua opçao: ");
@@ -22,7 +31,6 @@ public class Menu {
         int escolha = sc.nextInt();
         System.out.println("=======================");
         
-
         switch (escolha){
             case 1:
                 //funçao pra tela de funcionario
@@ -49,18 +57,18 @@ public class Menu {
         }
         sc.close();
     }
-
-        // Método para a tela do funcionário
+            // Método para a tela do funcionário
         public static void exibirTelaFuncionario(){
             clearScreen();
             System.out.println("Tela funcionário");
             System.out.println("---MANUTENÇÃO---");
 
         }
-        
-        // Método para a tela do usuário
+            // Método para a tela do usuário
         public static void exibirTelaUsuario(){
-            
+            boolean escolvalida= false;
+
+            while (!escolvalida) {    // loop feito para que sempre que seja escolhida uma opção invalida, retorne ao inicio
            System.out.println("======================="); 
            System.out.println("      Bem Vindo        "); 
            System.out.println("  "); 
@@ -78,27 +86,31 @@ public class Menu {
                 // Função para tela login
                 clearScreen();
                 telaLogin();
-                
+                escolvalida=true;
                 break;
+
             case 2:
                 // Função para tela cadastro
                 clearScreen();
-                telaCadastro();
-
+                escolvalida=true;
                 break;
             case 3:
                 // Função para tela inicial
                 clearScreen();
                 exibirTelaInicial();
-
+                escolvalida=true;
                 break;
            
             default:
-            
+            clearScreen();
+                System.out.println("Opção inválida!");
+                System.out.println(" ");
+                System.out.println("=======================");
+                System.out.println(" ");            
                 break;
-            
             }
             login.close();
+        }
                   
         }    
             //Tela de login
@@ -107,27 +119,91 @@ public class Menu {
            System.out.println("======================="); 
            System.out.println("      LOGIN        "); 
            System.out.println("  ");
-           System.out.println("Digite seu CPF");
-           int cpf=lg.nextInt();
-           System.out.println("Digite sua senha");
+           System.out.println("Digite seu Nome");
+           String nome=lg.nextLine();
+           System.out.println("Digite sua Senha");
            int senha=lg.nextInt();
 
-        lg.close();
-        }
+           boolean verificado=false;
+                // verificaçã se o nome e a seha inseridos são iguais a algum objeto ja cadastrado
+           for (Usuario usuario : usuarios) {
+            if (nome.equals(usuario.getNome()) && senha == usuario.getSenha()) { 
+                System.out.println("  ");
+                System.out.print("Carregando");
+                
+                //Timer pro contador (meramente estético)
+                for (int i = 0; i < 3; i++) {
+                    System.out.print(" .");
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-        public static void telaCadastro() {
-            Scanner cd = new Scanner(System.in);
-           System.out.println("======================="); 
-           System.out.println("      LOGIN        "); 
-           System.out.println("  ");
-           System.out.print("Digite seu nome: ");
-           String nomeO = cd.nextLine();
-           System.out.print("Digite seu CPF: ");
-           String cpfO = cd.nextLine();
-           System.out.print("Digite sua senha: ");
-           String senhaO = cd.nextLine();
-         
-        cd.close();
+                System.out.println("  ");
+                System.out.println("  ");
+                System.out.println("Login bem-sucedido para " + usuario.getNome()); 
+                System.out.println("======================="); 
+                verificado = true;
+                break;
+            }
+        } 
+        if(!verificado) {
+            System.out.println("  ");
+            System.out.print("Carregando");
+            
+            for (int i = 0; i < 2; i++) {
+                System.out.print(" .");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+                    // interface para o caso de entrada de dados que não estão cadastrados
+            clearScreen();
+            System.out.println(" ");
+            System.out.println("Dados inválidos!");
+            System.out.println(" ");
+            System.out.println("1-Tentar novamente");
+            System.out.println("2-Voltar a tela do usuário");
+            System.out.println(" ");
+            System.out.println("======================="); 
+            
+            int di=lg.nextInt();
+            switch (di) {
+                        case 1:
+                        clearScreen();    
+                        telaLogin();
+                            break;
+                    
+                        default:
+                            clearScreen();
+                            exibirTelaUsuario();
+                            break;
+                    }
+                }
+            lg.close();
+            }
+
         }
     
+// Classe pra criação dos usuários
+class Usuario{
+    private String nome;
+    private int senha;
+    //construtor por parâmetros
+    public Usuario(String nome, int senha){
+        this.nome=nome;
+        this.senha=senha;
+    }
+    // getter pra "puxar" o valor do atributo de algum objeto
+    public String getNome(){
+        return nome;
+    }         
+    public int getSenha(){
+        return senha;
+    }
+
 }
