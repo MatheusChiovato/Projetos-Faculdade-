@@ -113,7 +113,7 @@ public class Menu {
         }
                   
         }    
-            //Tela de login
+            // Método para a tela de login
         public static void telaLogin(){
             Scanner lg = new Scanner(System.in);
            System.out.println("======================="); 
@@ -142,9 +142,12 @@ public class Menu {
                 }
 
                 System.out.println("  ");
+                clearScreen();
                 System.out.println("  ");
-                System.out.println("Login bem-sucedido para " + usuario.getNome()); 
+                System.out.println("Login bem-sucedido!"); 
                 System.out.println("======================="); 
+                System.out.println("  ");
+                telaLogado(usuario);
                 verificado = true;
                 break;
             }
@@ -185,9 +188,38 @@ public class Menu {
                     }
                 }
             lg.close();
-            }
+    }
+            
+        public static void telaCadastro(){
+            Scanner cd = new Scanner(System.in);
+           System.out.println("======================="); 
+           System.out.println("       CADASTRO        "); 
+           System.out.println("  ");
+           System.out.println("Digite um nome para cadastro:  ");
+           String nomec=cd.nextLine();
+           System.out.println("Digite uma senha para cadastro:  ");
+           int senhac=cd.nextInt();
 
+
+           cd.close();
+        } 
+            // Método para a tela após o usuário fazer login
+        public static void telaLogado(Usuario usuario){
+        System.out.println("=======================");
+        System.out.println("    BEM VINDO " + usuario.getNome() + "   ");
+        System.out.println(" ");
+        System.out.println("O que deseja fazer:");
+        System.out.println(" ");
+        System.out.println("1- Consultar livros disponíveis");
+        System.out.println("2- Alugar livros ");
+        System.out.println("3- Verificar livros alugados ");
+        System.out.println("4- Devolver livros ");
+        System.out.println(" ");
+        System.out.println("5- Sair ");
+        
         }
+
+}
     
 // Classe pra criação dos usuários
 class Usuario{
@@ -205,5 +237,11 @@ class Usuario{
     public int getSenha(){
         return senha;
     }
-
+    // setter para Atribuir novos valores a um objeto durante a execução do programa
+    public void setNome(String nome){
+        this.nome = nome;    
+    }
+    public void setSenha(int senha){
+        this.senha = senha;   
+    }    
 }
